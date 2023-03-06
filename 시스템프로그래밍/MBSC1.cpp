@@ -14,4 +14,6 @@ int main(void)
 
     printf("배열의 크기 : %d \n", size);
     printf("문자열 길이 : %d \n", len);
+    
+    return 0;
 }
