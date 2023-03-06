@@ -15,4 +15,6 @@ int main(void)
     wprintf(L"Array size : %d \n", size);
     wprintf(L"string Length : %d \n", len);
     wprintf(L"%s\n", str);
+    
+    return 0;
 }
