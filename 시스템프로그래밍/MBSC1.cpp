@@ -3,7 +3,7 @@
 */
 #include <stdio.h>
 #include <string.h>
-#include <stddef.h> // 교재에는 없지만 이게 있어애 실행 가능
+#include <stddef.h> // 교재에는 없지만 이게 있어야 실행 가능
 
 int main(void)
 {
