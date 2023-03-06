@@ -1,5 +1,5 @@
 /*
-    MBCS1 실습
+    MBCS 실습 1
 */
 #include <stdio.h>
 #include <string.h>
