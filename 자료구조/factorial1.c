@@ -4,7 +4,7 @@ int factorial(int n);
 
 int main(int argc)
 {
-
+	factorial(argc);
 }
 
 int factorial(int n)
