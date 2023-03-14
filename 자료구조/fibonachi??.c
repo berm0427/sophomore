@@ -1,13 +1,16 @@
 #include <stdio.h>
 
-// Define a recursive function to calculate the sum of an array
-int sumArray(int arr[], int n) {
-    // Base case: if the array is empty, the sum is 0
-    if (n == 0) {
+// 배열의 합을 계산하는 재귀 함수 정의
+int sumArray(int arr[], int n) 
+{
+    // 기본 사례: 배열이 비어 있으면 합이 0
+    if (n == 0) 
+    {
         return 0;
     }
-    // Recursive case: the sum is the sum of the first n-1 elements plus the nth element
-    else {
+    // 재귀함수: 합은 첫 번째 n-1 요소와 n번째 요소의 합
+    else 
+    {
         return sumArray(arr, n-1) + arr[n-1];
     }
 }
