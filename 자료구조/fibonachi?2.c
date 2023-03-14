@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 // 배열의 합을 계산하는 재귀 함수 정의
