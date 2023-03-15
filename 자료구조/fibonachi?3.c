@@ -23,7 +23,8 @@ int main()
     // 원하는 배열의 사이즈를 입력받는 구문
     printf("[>] 원하는 배열의 사이즈를 입력 (%d 까지)\n[<] ");
     scanf("%d", &size);
-
+    
+    // 크기에 맞게 메모리 할당하는 
     int* arr = (int*)malloc(size * sizeof(int));
     if (arr == NULL) 
     {
