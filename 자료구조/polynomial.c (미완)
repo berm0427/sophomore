@@ -40,15 +40,15 @@ void poly_add2(int As, int Ae, int Bs, int Be, int* Cs, int* Ce)
 		{
 			case '>':
 				attach(terms[As].coef, terms[As].expon);
-				As++;
+				As++; break;
 			case '=':
 				attach(terms[As].coef, terms[Bs].coef);
 				if (tempcoef)
 					attach(tempcoef, terms[As].expon);
-				As++; Bs++;
+				As++; Bs++; break;
 			case '<':
 				attach(terms[Bs].coef, terms[Bs].expon);
-				Bs++;
+				Bs++; break;
 		}
 	}
 	for (; As <= Ae; As++)
