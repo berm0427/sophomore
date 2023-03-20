@@ -1,6 +1,6 @@
 /*
 	CreateProcess.cpp
-	ÇÁ·Î±×·¥ ¼³¸í : µ¡¼À ÇÁ·Î¼¼½º¸¦ »ı¼º
+	í”„ë¡œê·¸ë¨ ì„¤ëª… : ë§ì…ˆ í”„ë¡œì„¸ìŠ¤ë¥¼ ìƒì„±
 */
 
 #include <stdio.h>
@@ -21,24 +21,24 @@ int _tmain(int argc, TCHAR* argv[])
 	si.dwY=200;
 	si.dwXSize=30;
 	si.dwYSize=20;
-	//si.lpTitle = _T("I am a boy!");
+	si.lpTitle = _T("Wang Kun Ko!");
 
 	TCHAR command[]=_T("AdderProcess.exe 10 20");
 	TCHAR cDir[DIR_LEN];
 	BOOL state;
 
-	GetCurrentDirectory(DIR_LEN, cDir);	//ÇöÀç µğ·ºÅä¸® È®ÀÎ.
+	GetCurrentDirectory(DIR_LEN, cDir);	//í˜„ì¬ ë””ë ‰í† ë¦¬ í™•ì¸.
 	_fputts(cDir, stdout);
 	_fputts(_T("\n"), stdout);
 
 	SetCurrentDirectory(_T("C:\\WinSystem"));
 	
-	GetCurrentDirectory(DIR_LEN, cDir);	//ÇöÀç µğ·ºÅä¸® È®ÀÎ.
+	GetCurrentDirectory(DIR_LEN, cDir);	//í˜„ì¬ ë””ë ‰í† ë¦¬ í™•ì¸.
 	_fputts(cDir, stdout);
 	_fputts(_T("\n"), stdout);
 
 
-	state=CreateProcess(NULL,     // ÇÁ·Î¼¼½º »ı¼º.
+	state=CreateProcess(NULL,     // í”„ë¡œì„¸ìŠ¤ ìƒì„±.
 					    command,
 						NULL,
 						NULL, 
