@@ -75,7 +75,7 @@ int CmdProcessing(void)
 	else if (!_tcscmp(cmdTokenList[0], _T("추가되는 명령어 2")))
 	{
 	}
-	else if (!_tcscmp(cmdTokenList[0], _T("note")))
+	else if (!_tcscmp(cmdTokenList[0], _T("notepad")))
 	{
 		ZeroMemory(&pi, sizeof(pi));
 		CreateProcess(NULL, command, NULL, NULL, TRUE, 0, NULL, NULL, &si, &pi);
