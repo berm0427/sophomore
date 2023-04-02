@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 /*
-	CommandPrmpt_One.cpp
-	프로그램 설명: 명령 프롬프트의 골격
+	CommandPrmpt_note.cpp
+	프로그램 설명: 명령 프롬프트의 골격에 NOTEpad를 
 */
 
 #include <stdio.h>
