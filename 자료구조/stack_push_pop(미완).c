@@ -12,23 +12,23 @@ typedef struct {
 } StackType;
 
 // 스택 초기화 함수
-void init_stack(StackType *A)
+void init_stack(StackType* A)
 {
 	A->top = -1;
 }
 
 // 공백 상태 검출 함수
-int is_empty(StackType *A)
+int is_empty(StackType* A)
 {
 	return (A->top == -1);
 }
 // 포화 상태 검출 함수
-int is_full(StackType *A)
+int is_full(StackType* A)
 {
 	return (A->top == (MAX_STACK_SIZE - 1));
 }
 // 삽입함수
-void push(StackType *A, element item)
+void push(StackType* A, element item)
 {
 	if (is_full(A)) {
 		fprintf(stderr, "스택 포화 에러\n");
@@ -37,7 +37,7 @@ void push(StackType *A, element item)
 	else A->data[++(A->top)] = item;
 }
 // 삭제함수
-element pop(StackType *A)
+element pop(StackType* A)
 {
 	if (is_empty(A)) {
 		fprintf(stderr, "스택 공백 에러\n");
@@ -46,7 +46,7 @@ element pop(StackType *A)
 	else return A->data[(A->top)--];
 }
 // 피크함수
-element peek(StackType *A)
+element peek(StackType* A)
 {
 	if (is_empty(A)) {
 		fprintf(stderr, "스택 공백 에러\n");
@@ -59,19 +59,24 @@ element peek(StackType *A)
 
 int main(void)
 {
-	StackType *A;
+	StackType* A;
 
 
-	A = (StackType *)malloc(sizeof(StackType));
+	A = (StackType*)malloc(sizeof(StackType));
 	init_stack(A);
 	push(A, 1);
 	push(A, 2);
 	push(A, 3);
 	pop(A);
-    push(A, 4);
-    push(A, 5);
-
-    
-    printf("%d\n",peek(A));
+	push(A, 4);
+	push(A, 5);
+	
+	printf("[>]스택의 내용: ");
+	for (int i = 0; i <= A->top; i++) 
+	{
+		printf("%d ", A->data[i]);
+	}
+	printf("\n");
+	printf("[>]스택의 끝이 가리키는 내용: %d\n", peek(A));
 	free(A);
 }
