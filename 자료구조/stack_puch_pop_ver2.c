@@ -41,7 +41,7 @@ int main()
     push(A, 1);
     push(A, 2);
     push(A, 3);
-    pop();
+    pop(A);
     push(A, 4);
     push(A, 5);
 
