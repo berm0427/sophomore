@@ -6,7 +6,8 @@
 #define MAX_STACK_SIZE 100
 
 typedef int element;
-typedef struct {
+typedef struct 
+{
 	element data[MAX_STACK_SIZE];
 	int top;
 } StackType;
@@ -30,7 +31,8 @@ int is_full(StackType* A)
 // 삽입함수
 void push(StackType* A, element item)
 {
-	if (is_full(A)) {
+	if (is_full(A)) 
+	{
 		fprintf(stderr, "스택 포화 에러\n");
 		return;
 	}
@@ -39,7 +41,8 @@ void push(StackType* A, element item)
 // 삭제함수
 element pop(StackType* A)
 {
-	if (is_empty(A)) {
+	if (is_empty(A)) 
+	{
 		fprintf(stderr, "스택 공백 에러\n");
 		exit(1);
 	}
@@ -48,7 +51,8 @@ element pop(StackType* A)
 // 피크함수
 element peek(StackType* A)
 {
-	if (is_empty(A)) {
+	if (is_empty(A)) 
+	{
 		fprintf(stderr, "스택 공백 에러\n");
 		exit(1);
 	}
