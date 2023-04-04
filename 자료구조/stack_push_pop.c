@@ -70,6 +70,7 @@ int main(void)
 	pop(A);
 	push(A, 4);
 	push(A, 5);
+	pop(A);
 	
 	printf("[>]스택의 내용: ");
 	for (int i = 0; i <= A->top; i++) 
