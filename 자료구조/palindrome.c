@@ -100,11 +100,11 @@ int check_palindrome(DequeType* q)
 {
 	if (get_rear(q) == get_front(q))
 	{
-		printf("palindrome이 맞습니다.");
+		printf("palindrome이 맞습니다.\n");
 	}
 	else
 	{
-		printf("palindrome이 아닙니다.");
+		printf("palindrome이 아닙니다.\n");
 	}
 }
 
