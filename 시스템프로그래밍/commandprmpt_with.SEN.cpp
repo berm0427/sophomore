@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 /*
 	CommandPrmpt_with_SEN.cpp
-	프로그램 설명: 명령 프롬프트의 골격에 Start,Echo,Notepad를 
+	프로그램 설명: 기존의 명령 프롬프트에 Start,Echo,Notepad를 추
 */
 
 #include <stdio.h>
