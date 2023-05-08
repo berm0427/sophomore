@@ -14,7 +14,7 @@
 #define CMD_TOKEN_NUM 10
 
 TCHAR ERROR_CMD[]
-= _T("'%s'Àº(´Â) ½ÇÇàÇÒ ¼ö ÀÖ´Â ÇÁ·Î±×·¥ÀÌ ¾Æ´Õ´Ï´Ù. \n");
+= _T("'%s'ì€(ëŠ”) ì‹¤í–‰í•  ìˆ˜ ìžˆëŠ” í”„ë¡œê·¸ëž¨ì´ ì•„ë‹™ë‹ˆë‹¤. \n");
 TCHAR cmdString[STR_LEN];
 TCHAR cmdTokenList[CMD_TOKEN_NUM][STR_LEN];
 TCHAR seps[] = _T(" ,\t\n");
@@ -25,9 +25,9 @@ int ListProcessInfo();
 void KillProcess();
 int _tmain(int argc, TCHAR* argv[])
 {
-	//ÇÑ±Û ÀÔ·ÂÀ» °¡´ÉÇÏ°Ô ÇÏ±â À§ÇØ
+	//í•œê¸€ ìž…ë ¥ì„ ê°€ëŠ¥í•˜ê²Œ í•˜ê¸° ìœ„í•´
 	_tsetlocale(LC_ALL, _T("Korean"));
-	/* ¸Å°³ º¯¼ö ÀüÀßÀÎÀÚ Ã³¸®¿ë (start ¸í·É¾î Àü¿ë)*/
+	/* ë§¤ê°œ ë³€ìˆ˜ ì „ì¸ìž ì²˜ë¦¬ìš© (start ëª…ë ¹ì–´ ì „ìš©)*/
 	if (argc > 2)
 	{
 		for (int i = 1; i < argc; i++)
@@ -43,7 +43,7 @@ int _tmain(int argc, TCHAR* argv[])
 	{
 		int tokenNum = cmdReadTokenize();
 
-		if (tokenNum == 0) /* Enter ÀÔ·ÂÃ³¸® À§ÇÑ ºÎºÐ */
+		if (tokenNum == 0) /* Enter ìž…ë ¥ì²˜ë¦¬ ìœ„í•œ ë¶€ë¶„ */
 		{
 			continue;
 		}
@@ -51,18 +51,18 @@ int _tmain(int argc, TCHAR* argv[])
 		isExit = CmdProcessing(tokenNum);
 		if (isExit == TRUE)
 		{
-			_fputts(_T("¸í·É¾î Ã³¸®¸¦ Á¾·áÇÕ´Ï´Ù. \n"), stdout);
+			_fputts(_T("ëª…ë ¹ì–´ ì²˜ë¦¬ë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤. \n"), stdout);
 			break;
 		}
 	}
 	return 0;
 }
 /********************************
-ÇÔ¼ö: int cmdReadTokenize(void)
-±â´É ¹× ÇØ¼®:
-CommandPrmpt_with_notepad.cppÀÇ CmdProcessing ÇÔ¼ö´Â »ç¿ëÀÚÀÇ ¼±ÅÃÀ» ÀÔ·Â¹Þ´Â ±â´É°ú
-¼±ÅÃ¿¡ µû¸¥ ¸í·É¾î Ã³¸®±â´ÉÀ» µ¿½Ã¿¡ °¡Áö°í ÀÖ´Ù. ÀÌ¿¡ »ç¿ëÀÚÀÇ ¼±ÅÃÀ» ÀÔ·Â¹Þ´Â ±â´ÉÀ»
-CmdReadTokenize·Î ºÐ¸®ÇÔ ¸í·É¾î°¡ main ÇÔ¼ö¸¦ ÅëÇØ Àü´ÞµÇ´Â °æ¿ì¿¡´Â »ç¿ëÀÚ ÀÔ·ÂÀÌ ºÒÇÊ¿äÇÑ °æ¿ì¿¡ ¼öÇàµÊ
+í•¨ìˆ˜: int cmdReadTokenize(void)
+ê¸°ëŠ¥ ë° í•´ì„:
+CommandPrmpt_with_notepad.cppì˜ CmdProcessing í•¨ìˆ˜ëŠ” ì‚¬ìš©ìžì˜ ì„ íƒì„ ìž…ë ¥ë°›ëŠ” ê¸°ëŠ¥ê³¼
+ì„ íƒì— ë”°ë¥¸ ëª…ë ¹ì–´ ì²˜ë¦¬ê¸°ëŠ¥ì„ ë™ì‹œì— ê°€ì§€ê³  ìžˆë‹¤. ì´ì— ì‚¬ìš©ìžì˜ ì„ íƒì„ ìž…ë ¥ë°›ëŠ” ê¸°ëŠ¥ì„
+CmdReadTokenizeë¡œ ë¶„ë¦¬í•¨ ëª…ë ¹ì–´ê°€ main í•¨ìˆ˜ë¥¼ í†µí•´ ì „ë‹¬ë˜ëŠ” ê²½ìš°ì—ëŠ” ì‚¬ìš©ìž ìž…ë ¥ì´ ë¶ˆí•„ìš”í•œ ê²½ìš°ì— ìˆ˜í–‰ë¨
 *********************************/
 int cmdReadTokenize(void)
 {
@@ -83,9 +83,9 @@ int cmdReadTokenize(void)
 
 
 /********************************
-ÇÔ¼ö: int Cmdprocessing(void)
-±â´É: ¸í·É¾î¸¦ ÀÔ·Â¹Þ¾Æ¼­ ÇØ´ç ¸í·É¾î¿¡ ÀúÀåµÇ¾î ÀÖ´Â ±â´ÉÀ» ¼öÇàÇÑ´Ù.
-		exit°¡ ÀÔ·ÂµÇ¸é TRUE¸¦ ¹ÝÈ¯ÇÏ°í ÇÁ·Î±×·¥ÀÇ Á¾·á·Î ÀÌ¾îÁø´Ù
+í•¨ìˆ˜: int Cmdprocessing(void)
+ê¸°ëŠ¥: ëª…ë ¹ì–´ë¥¼ ìž…ë ¥ë°›ì•„ì„œ í•´ë‹¹ ëª…ë ¹ì–´ì— ì €ìž¥ë˜ì–´ ìžˆëŠ” ê¸°ëŠ¥ì„ ìˆ˜í–‰í•œë‹¤.
+		exitê°€ ìž…ë ¥ë˜ë©´ TRUEë¥¼ ë°˜í™˜í•˜ê³  í”„ë¡œê·¸ëž¨ì˜ ì¢…ë£Œë¡œ ì´ì–´ì§„ë‹¤
 *********************************/
 int CmdProcessing(int tokenNum)
 {
@@ -107,19 +107,19 @@ int CmdProcessing(int tokenNum)
 	}
 	else if (!_tcscmp(cmdTokenList[0], _T("start")))
 	{
-		/* ÀÌ ÇÁ·Î±×·¥ÀÇ ½ÇÇàÆÄÀÏÀÌ¸§ÀÌ NewCmd.exe¶ó°í °¡Á¤ÇÑ´Ù*/
+		/* ì´ í”„ë¡œê·¸ëž¨ì˜ ì‹¤í–‰íŒŒì¼ì´ë¦„ì´ NewCmd.exeë¼ê³  ê°€ì •í•œë‹¤*/
 
-		if (tokenNum > 1) /* "start echo nacho"¶ó´Â ¹®ÀÚ¿­ Ã³¸® À§ÇØ*/
+		if (tokenNum > 1) /* "start echo nacho"ë¼ëŠ” ë¬¸ìžì—´ ì²˜ë¦¬ ìœ„í•´*/
 		{
-			/* start¸¦ Á¦¿ÜÇÑ ³ª¸ÓÁö ¹®ÀÚ¿­ Àç±¸¼º */
-			/* Áï, "echo nacho"¸¦ ¸¸µç´Ù */
+			/* startë¥¼ ì œì™¸í•œ ë‚˜ë¨¸ì§€ ë¬¸ìžì—´ ìž¬êµ¬ì„± */
+			/* ì¦‰, "echo nacho"ë¥¼ ë§Œë“ ë‹¤ */
 			for (int i = 1; i < tokenNum; i++)
 			{
 				_stprintf(optString, _T("%s %s"), optString, cmdTokenList[i]);
 			}
 			_stprintf(cmdstringWithOptions, _T("%s %s"), _T("NewCmd.exe"), optString);
 		}
-		else /* start¸¸ ÀÔ·ÂÇÏ´Â °æ¿ì */
+		else /* startë§Œ ìž…ë ¥í•˜ëŠ” ê²½ìš° */
 		{
 			_stprintf(cmdstringWithOptions, _T("%s"), _T("NewCmd.exe"));
 		}
@@ -130,7 +130,7 @@ int CmdProcessing(int tokenNum)
 	}
 	else if (!_tcscmp(cmdTokenList[0], _T("echo")))
 	{
-		/* ÀÔ·ÂµÈ ¹®ÀÚ¿­À» ±×´ë·Î ½ÇÇàÇÏ´Â echo ¸í·É¾î */
+		/* ìž…ë ¥ëœ ë¬¸ìžì—´ì„ ê·¸ëŒ€ë¡œ ì‹¤í–‰í•˜ëŠ” echo ëª…ë ¹ì–´ */
 		for (int i = 1; i < tokenNum; i++)
 		{
 			_stprintf(optString, _T("%s %s"), optString, cmdTokenList[i]);
@@ -155,7 +155,7 @@ int CmdProcessing(int tokenNum)
 	{
 		_tcscpy(cmdstringWithOptions, cmdTokenList[0]);
 
-		//CheckPoint 1: ÀÔ·ÂµÈ ¹®ÀÚ¿­ Ã³¸®¸¦ À§ÇÑ for¹®
+		//CheckPoint 1: ìž…ë ¥ëœ ë¬¸ìžì—´ ì²˜ë¦¬ë¥¼ ìœ„í•œ forë¬¸
 		for (int i = 1; i < tokenNum; i++)
 		{
 			_stprintf(cmdstringWithOptions, _T("%s %s"), cmdstringWithOptions, cmdTokenList[i]);
@@ -174,9 +174,9 @@ int CmdProcessing(int tokenNum)
 }
 
 /********************************
-ÇÔ¼ö: TCHAR * StrLower(TCAHR * pStr)
-±â´É: ¹®ÀÚ¿­ ³»¿¡ Á¸ÀçÇÏ´Â ¸ðµç ´ë¹®ÀÚ¸¦ ¼Ò¹®ÀÚ·Î º¯°æÇÑ´Ù.
-		º¯°æµÈ ¹®ÀÚ¿­ÀÇ Æ÷ÀÎÅÍ¸¦ ¹ÝÈ¯ÇÑ´Ù
+í•¨ìˆ˜: TCHAR * StrLower(TCAHR * pStr)
+ê¸°ëŠ¥: ë¬¸ìžì—´ ë‚´ì— ì¡´ìž¬í•˜ëŠ” ëª¨ë“  ëŒ€ë¬¸ìžë¥¼ ì†Œë¬¸ìžë¡œ ë³€ê²½í•œë‹¤.
+		ë³€ê²½ëœ ë¬¸ìžì—´ì˜ í¬ì¸í„°ë¥¼ ë°˜í™˜í•œë‹¤
 *********************************/
 TCHAR* StrLower(TCHAR* pStr)
 {
@@ -193,8 +193,8 @@ TCHAR* StrLower(TCHAR* pStr)
 	return ret;
 }
 /********************************
-ÇÔ¼ö: void ListProcess
-±â´É: ÇÁ·Î¼¼½ºÀÇ ¸®½ºÆ®¸¦ ¹ÝÈ¯ÇÑ´Ù	
+í•¨ìˆ˜: void ListProcess
+ê¸°ëŠ¥: í”„ë¡œì„¸ìŠ¤ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°˜í™˜í•œë‹¤	
 *********************************/
 int ListProcessInfo()
 {
@@ -206,7 +206,7 @@ int ListProcessInfo()
 		return -1;
 	}
 
-	/* ÇÁ·Î¼¼½º Á¤º¸¸¦ ¾ò±â À§ÇÑ ±¸Á¶Ã¼ º¯¼ö */
+	/* í”„ë¡œì„¸ìŠ¤ ì •ë³´ë¥¼ ì–»ê¸° ìœ„í•œ êµ¬ì¡°ì²´ ë³€ìˆ˜ */
 	PROCESSENTRY32 pe32;
 	pe32.dwSize = sizeof(PROCESSENTRY32);
 
@@ -220,13 +220,13 @@ int ListProcessInfo()
 
 	do
 	{
-		/* ÇÁ·Î¼¼½º ÀÌ¸§, ID Á¤º¸ Ãâ·Â */
+		/* í”„ë¡œì„¸ìŠ¤ ì´ë¦„, ID ì •ë³´ ì¶œë ¥ */
 		_tprintf(_T("%25s %5d \n"), pe32.szExeFile, pe32.th32ProcessID);
 	} while (Process32Next(hProcessSnap, &pe32));
 }
 /********************************
-ÇÔ¼ö: void KillProcess
-±â´É: ÇÁ·Î¼¼½º¸¦ Á¾·áÇÑ´Ù
+í•¨ìˆ˜: void KillProcess
+ê¸°ëŠ¥: í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œí•œë‹¤
 *********************************/
 void KillProcess()
 {
