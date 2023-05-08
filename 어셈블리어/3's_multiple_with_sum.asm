@@ -7,6 +7,7 @@ CMAIN:
     ;write your code here
     PRINT_STRING msg_input
     GET_DEC 2, data_max
+    PRINT_DEC 2, data_max
     NEWLINE
     
     mov eax, 0 ; for easy debugging
