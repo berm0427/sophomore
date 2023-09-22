@@ -28,3 +28,14 @@ namespace ConsoleApp1
 
 // https://www.nuget.org/packages/MySql.Data
 // DB Setting
+// testdb, testTable 만들고 진행
+// create testdb;
+// CREATE TABLE testTable(                              
+  id INT(11) NOT NULL AUTO_INCREMENT,                 
+  name VARCHAR(20) NOT NULL,                         
+  ouccupation VARCHAR(20) NULL,                       
+  height SMALLINT,                                  
+  profile TEXT NULL,                                 
+  date  DATETIME,                                     
+  CONSTRAINT testTable_PK PRIMARY KEY(id)           
+);
