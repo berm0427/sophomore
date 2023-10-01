@@ -21,4 +21,14 @@ create table 학생
   insert into 학생 
   values ('s001', '김연아', '서울 서초', 4, 23, '여', '010-1111-2222', '컴퓨터');
   insert into 학생 
-  values ('s002', '홍길동', 'default', 1, 26, '남', 'null', '통계');
+  values ('s002', '홍길동', DEFAULT, 1, 26, '남', NULL, '통계');
+  insert into 학생 
+  values ('s003', '이승엽', NULL, 3, 30, '남', NULL, '정보통신');
+  insert into 학생 
+  values ('s004', '이영애', '경기 분당', 2, NULL, '여', '010-4444-5555', '정보통신');
+  insert into 학생 
+  values ('s005', '송윤아', '경기 분당', 4, 23, '여', '010-6666-7777', '컴퓨터');
+  insert into 학생 
+  values ('s006', '홍길동', '서울 종로', 2, 26, '남', '010-8888-9999', '컴퓨터');
+  insert into 학생 
+  values ('s007', '이은진', '경기 과천', 1, 23, '여', '010-2222-3333', '경영');
