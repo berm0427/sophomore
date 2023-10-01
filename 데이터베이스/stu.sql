@@ -76,7 +76,7 @@ create table 학생
   insert into 수강 
   values ('s002', 'c001', '2018-03-10', 31, 50, 'F');
   insert into 수강 
-  values ('s001', 'c003', '2019-03-05', 82, 89, 'B');
+  values ('s001', 'c004', '2019-03-05', 82, 89, 'B');
   insert into 수강 
   values ('s004', 'c003', '2020-09-03', 91, 94, 'A');
   insert into 수강 
