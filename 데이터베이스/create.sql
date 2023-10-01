@@ -62,7 +62,7 @@ create table 학생
   insert into 과목 
   values ('c003', '모바일웹', 128, '컴퓨터', 3);  
   insert into 과목 
-  values ('c004', '철학개론', 126, '철학', 2);
+  values ('c004', '철학개론', 117, '철학', 2);
   insert into 과목 
   values ('c005', '전공글쓰기', 120, '교양학부', 1);
   
