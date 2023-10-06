@@ -188,6 +188,21 @@ select * from 학생;
 
 --
 
+SET foreign_key_checks = 0; -- 외래키 체크 설정 해제 powered by https://devpouch.tistory.com/116 
+
+delete from 과목 where 과목번호 in (select 과목번호 from 수강 group by 과목번호 having count(*) < 2);
+
+select * from 과목;
+
+--
+
+delete from 학생;
+
+select * from 학생
+
+--
+
+
 
 
 
