@@ -145,5 +145,35 @@ select 학생.학번, 이름, 평가학점 from 학생 left outer join 수강 on
 
 --
 
+use univDB;
+insert into 학생
+values('g001', '김연아2', '서울 서초', 4, 23, '여', '010-1111-2222', '컴퓨터');
+
+--
+
+use univDB;
+insert into 학생(이름, 주소, 학년, 나이, 성별, 휴대폰번호, 소속학부, 학번)
+values('홍길동2', default, 1, 26, '남', NULL, '통계', 'g002');
+
+--
+
+use univDB;
+delete from 학생 where 이름 = '홍길동2';
+
+--
+
+use univDB;
+insert into 학생(학년, 나이, 성별, 소속학부, 학번, 이름)
+values(3, 30, '남', '정보통신', 'g003', '이승엽2');
+
+--
+
+use univDB;
+update 학생 set 학년 = 3 where 이름 = '이은진';
+
+--
+
+
+
 
 
