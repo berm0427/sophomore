@@ -181,6 +181,13 @@ select * from 학생;
 
 --
 
+use univDB;
+delete from 학생 where 학년=3;
+
+select * from 학생;
+
+--
+
 
 
 
