@@ -86,4 +86,4 @@ create table 학생
   insert into 수강 
   values ('s004', 'c002', '2018-03-05', 92, 95, 'A');
   
-  
+  SET foreign_key_checks = 0; -- 외래키 체크 끄기
