@@ -173,6 +173,14 @@ update 학생 set 학년 = 3 where 이름 = '이은진';
 
 --
 
+use univDB;
+update 학생 set 소속학부 = null 
+where 학번 not in (select 학번 from 수강);
+
+select * from 학생;
+
+--
+
 
 
 
