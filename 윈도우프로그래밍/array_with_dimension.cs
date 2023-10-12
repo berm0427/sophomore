@@ -12,7 +12,6 @@ foreach(int cnt in Array2)
 {
     Console.Write(cnt + " ");
 }
-Console.WriteLine("\n");
 
 int[,] number2D = new int[3,2] {{1, 3}, {5, 7}, {6, 8}};
 Console.WriteLine();
