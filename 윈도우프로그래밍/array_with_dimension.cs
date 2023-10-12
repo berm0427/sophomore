@@ -29,6 +29,3 @@ int d2 = Array_Rank2.Rank;
 
 Console.WriteLine(" > 차원 수 : " + d1);
 Console.WriteLine(" > 차원 수 : " + d2);
-
-
-Console.WriteLine(" > 차원 수 : " + d2);
