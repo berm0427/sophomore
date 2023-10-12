@@ -1,3 +1,8 @@
+/*
+InstanceOfEx와 내용은 같아 전체적인 설명은 넣지 않았습니다
+전체적인 설명은 InstanceOfEx를 참조해주세요
+ */
+
 class Person { }
 class Student extends Person { }
 class Researcher extends Person { }
@@ -12,7 +17,8 @@ public class InstanceOfEx2
             System.out.print("Person ");
         }
 
-        else if (p instanceof Student)
+        else if (p instanceof Student) /* 만일 else if로 실행하면 -> else if가 위에 내용이 아니면 출력한다는 이야기 이므로 
+                                                                    위에있는 Person만 출력*/
         {
             System.out.print("Student ");
         }

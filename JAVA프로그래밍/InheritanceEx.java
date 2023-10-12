@@ -1,4 +1,4 @@
-class Person
+class Person // Person class 생성
 {
     private int weight;
     int age;
@@ -16,7 +16,7 @@ class Person
     }
 }
 
-class Student extends Person
+class Student extends Person // Person을 상속받은 Student class 생성
 {
     public void set()
     {
@@ -28,12 +28,12 @@ class Student extends Person
     }
 }
 
-public class InheritanceEx 
+public class InheritanceEx // 파일이름과 같은 public class 생성
 {
     public static void main(String[] args) 
     {
-        Student s = new Student();
+        Student s = new Student(); // student 객체 생성
         s.set();
-        System.out.println(s.age + " " + s.name + " " + s.height + " " + s.getWeight());        
+        System.out.println(s.age + " " + s.name + " " + s.height + " " + s.getWeight()); // 출력    
     }   
 }

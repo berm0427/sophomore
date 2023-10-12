@@ -1,51 +1,51 @@
-class Shape
+class Shape // Shape 클래스 선언
 {
-    public Shape next;
-    public Shape() {next = null;}
+    public Shape next; // Shape 객체를 참조하는 next 선언
+    public Shape() {next = null;} // next 참조 초기화
 
-    public void draw()
+    public void draw() // draw 함수 선언
     {
         System.out.println("Shape");
     }
 }
 
-class Line extends Shape
+class Line extends Shape // Shape를 상속받는 Line 클래스 선언
 {
-    public void draw()
+    public void draw() // draw 함수 오버라이딩
     {
         System.out.println("Line");
     }
 }
 
-class Rect extends Shape
+class Rect extends Shape // Shape를 상속받는 Rect 클래스 선언
 {
-    public void draw()
+    public void draw() // draw 함수 오버라이딩
     {
         System.out.println("Rect");
     }
 }
 
-class Circle extends Shape
+class Circle extends Shape // Shape를 상속받는 Circle 클래스 선언
 {
-    public void draw()
+    public void draw() // draw 메서드 오버라이딩
     {
         System.out.println("Circle");
     }
 }
 
-public class MethodOverridingEx 
+public class MethodOverridingEx // 파일 이름과 같은 public class 선언
 {
-    static void paint(Shape p)
+    static void paint(Shape p) // paint 메서드 선언
     {
         p.draw();
     }
     public static void main(String[] args) 
     {
-        Line line = new Line();
+        Line line = new Line(); // Line 객체 선언
         paint(line);
-        paint(new Shape());
-        paint(new Line());
-        paint(new Rect());
-        paint(new Circle());
+        paint(new Shape());// 객체 출력
+        paint(new Line());// 객체 출력
+        paint(new Rect());// 객체 출력
+        paint(new Circle());// 객체 출력
     }
 }
