@@ -33,7 +33,7 @@ CREATE TABLE MovieStar
   movieTitle varchar(30),
   movieYear int,
   starName varchar(30) references MovieStar(name),
-  primary key(movieTitle),
+  primary key(starName),
   foreign key (movieTitle, movieYear) references Movie(title,year)
 );
 
