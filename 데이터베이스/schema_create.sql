@@ -1,7 +1,7 @@
 drop database if exists Movie;
 create database if not exists Movie;
 
--- SQL 명령어를 실행할 대상인 기본 데이터베이스를 univDB로 지정
+-- SQL 명령어를 실행할 대상인 기본 데이터베이스를 Movie로 지정
 use Movie;
 
 
