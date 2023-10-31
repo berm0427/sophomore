@@ -1,48 +1,68 @@
 using System;
 using System.Windows.Forms;
+using TimeZoneConverter;
 
-namespace KSTTimerApp
+namespace TimeZoneApp
 {
-    public class MainForm : Form
+    public partial class MainForm : Form
     {
-        private Label kstLabel;
+        private Label timeLabel;
+        private TextBox countryTextBox;
         private Timer timer;
 
         public MainForm()
         {
-            kstLabel = new Label()
-            {
-                Location = new System.Drawing.Point(10, 10),
-                Width = 200
-            };
-            this.Controls.Add(kstLabel);
+            InitializeComponent();
 
-            timer = new Timer();
-            timer.Interval = 1000; // 1초마다 업데이트
+            timeLabel = new Label() { Location = new System.Drawing.Point(10, 10), Width = 300 };
+            countryTextBox = new TextBox() { Location = new System.Drawing.Point(10, 40), Width = 200 };
+            timer = new Timer() { Interval = 1000 };
+
+            this.Controls.Add(timeLabel);
+            this.Controls.Add(countryTextBox);
+            this.Controls.Add(new Label() { Location = new System.Drawing.Point(10, 70), Text = "Enter a country and press Enter" });
+
+            countryTextBox.KeyDown += CountryTextBox_KeyDown;
             timer.Tick += Timer_Tick;
-            timer.Start();
 
-            UpdateKST();
+            timer.Start();
+            UpdateTime();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            UpdateKST();
+            UpdateTime();
         }
 
-        private void UpdateKST()
+        private void CountryTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            // 현재 UTC 시간에 9시간을 더하여 KST로 변환
-            DateTime kstTime = DateTime.UtcNow.AddHours(9);
-            kstLabel.Text = $"KST: {kstTime.ToString("yyyy-MM-dd HH:mm:ss")}";
+            if (e.KeyCode == Keys.Enter)
+            {
+                UpdateTime();
+                e.SuppressKeyPress = true;
+            }
         }
 
-        [STAThread]
-        static void Main()
+        private void UpdateTime()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            string country = countryTextBox.Text;
+            DateTime currentTime = DateTime.UtcNow;
+
+            if (!string.IsNullOrWhiteSpace(country))
+            {
+                try
+                {
+                    string timeZoneId = TZConvert.GetTimeZoneInfo(country).Id;
+                    currentTime = TimeZoneInfo.ConvertTimeFromUtc(currentTime, TimeZoneInfo.FindSystemTimeZoneById(timeZoneId));
+                }
+                catch
+                {
+                    timeLabel.Text = "Invalid country name or timezone not found";
+                    return;
+                }
+            }
+
+            timeLabel.Text = $"{country} Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
         }
     }
 }
