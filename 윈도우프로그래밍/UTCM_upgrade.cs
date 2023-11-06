@@ -21,14 +21,6 @@ namespace TimeZoneApp
         {
             countryToTimezoneMap = LoadMappingsFromFile();
 
-            countryToTimezoneMap = new Dictionary<string, string>
-            {
-                { "Korea", "Asia/Seoul" },
-                { "USA", "America/New_York" },
-                { "Japan", "Asia/Tokyo" },
-                // 추가적인 국가-시간대 매핑
-            };
-
             timeLabel = new Label() { Location = new System.Drawing.Point(10, 10), Size = new System.Drawing.Size(400, 20) };
             countryTextBox = new TextBox() { Location = new System.Drawing.Point(10, 40), Width = 200 };
             timeZoneTextBox = new TextBox() { Location = new System.Drawing.Point(220, 40), Width = 200 };
@@ -46,6 +38,8 @@ namespace TimeZoneApp
             countryTextBox.KeyDown += CountryTextBox_KeyDown;
             timeZoneTextBox.KeyDown += TimeZoneTextBox_KeyDown;
             timer.Tick += Timer_Tick;
+
+            this.FormClosing += MainForm_FormClosing;
 
             timer.Start();
             UpdateTime();
@@ -79,45 +73,25 @@ namespace TimeZoneApp
             }
         }
 
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveMappingsToFile();
+        }
+
         private void UpdateTime()
         {
             string input = countryTextBox.Text.Trim();
             string customTimezone = timeZoneTextBox.Text.Trim();
             DateTime currentTime = DateTime.UtcNow;
 
-            if (!string.IsNullOrWhiteSpace(input))
+            if (!string.IsNullOrWhiteSpace(input) || !string.IsNullOrWhiteSpace(customTimezone))
             {
                 try
                 {
-                    if (countryToTimezoneMap.TryGetValue(input, out var countryTimeZone))
-                    {
-                        TimeZoneInfo timeZoneInfo = TZConvert.GetTimeZoneInfo(countryTimeZone);
-                        currentTime = TimeZoneInfo.ConvertTimeFromUtc(currentTime, timeZoneInfo);
-                        timeLabel.Text = $"{input} Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
-                    }
-                    else if (!string.IsNullOrWhiteSpace(customTimezone))
-                    {
-                        TimeZoneInfo timeZoneInfo = TZConvert.GetTimeZoneInfo(customTimezone);
-                        currentTime = TimeZoneInfo.ConvertTimeFromUtc(currentTime, timeZoneInfo);
-                        timeLabel.Text = $"Custom Time Zone: {currentTime:yyyy-MM-dd HH:mm:ss}";
-                    }
-                    else
-                    {
-                        timeLabel.Text = "Invalid country name or time zone not found";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    timeLabel.Text = "Error: " + ex.Message;
-                }
-            }
-            else if (!string.IsNullOrWhiteSpace(customTimezone))
-            {
-                try
-                {
-                    TimeZoneInfo timeZoneInfo = TZConvert.GetTimeZoneInfo(customTimezone);
+                    string timezoneId = !string.IsNullOrWhiteSpace(input) ? countryToTimezoneMap[input] : customTimezone;
+                    TimeZoneInfo timeZoneInfo = TZConvert.GetTimeZoneInfo(timezoneId);
                     currentTime = TimeZoneInfo.ConvertTimeFromUtc(currentTime, timeZoneInfo);
-                    timeLabel.Text = $"Custom Time Zone: {currentTime:yyyy-MM-dd HH:mm:ss}";
+                    timeLabel.Text = $"{(string.IsNullOrWhiteSpace(input) ? "Custom" : input)} Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
                 }
                 catch (Exception ex)
                 {
