@@ -49,7 +49,7 @@ namespace TimeZoneApp
             if (e.KeyCode == Keys.Enter)
             {
                 UpdateTime();
-                e.SuppressKeyPress = true; // To prevent ding sound on pressing Enter
+                e.SuppressKeyPress = true; // Enter 키를 누를 때 소리를 방지용
             }
         }
 
