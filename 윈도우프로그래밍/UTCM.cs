@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using TimeZoneConverter;
+using TimeZoneConverter; // NuGet 패키지 관리자에서 설치 필요
 
 namespace TimeZoneApp
 {
@@ -14,12 +14,12 @@ namespace TimeZoneApp
 
         public MainForm()
         {
-            // Initialize the dictionary with some country-timezone pairs.
+            // 시간대와 국가의 쌍 입력
             countryToTimezoneMap = new Dictionary<string, string>
             {
+                // 국가 이름을 아래와 같이 추가
                 { "Korea", "Asia/Seoul" },
-                // Add more countries and their respective timezone IDs here.
-                { "USA", "America/New_York" }, // Example for multiple entries
+                { "USA", "America/New_York" },
                 { "Japan", "Asia/Tokyo" },
                 { "DPRK", "Asia/Pyongyang"}
             };
@@ -80,7 +80,7 @@ namespace TimeZoneApp
                     return;
                 }
             }
-
+        
             timeLabel.Text = $"{countryInput} Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
         }
     }
