@@ -14,6 +14,7 @@ namespace TimeZoneApp
 
         public MainForm()
         {
+
             // 시간대와 국가의 쌍 입력
             countryToTimezoneMap = new Dictionary<string, string>
             {
@@ -21,7 +22,7 @@ namespace TimeZoneApp
                 { "Korea", "Asia/Seoul" },
                 { "USA", "America/New_York" },
                 { "Japan", "Asia/Tokyo" },
-                { "DPRK", "Asia/Pyongyang"}
+                // 추가적인 국가와 시간대 매핑을 여기에 추가할 수 있습니다.
             };
 
             timeLabel = new Label() { Location = new System.Drawing.Point(10, 10), Size = new System.Drawing.Size(300, 20) };
@@ -49,7 +50,7 @@ namespace TimeZoneApp
             if (e.KeyCode == Keys.Enter)
             {
                 UpdateTime();
-                e.SuppressKeyPress = true; // Enter 키를 누를 때 소리를 방지용
+                e.SuppressKeyPress = true; // Enter 키를 누를 때 소리를 방지
             }
         }
 
@@ -66,6 +67,7 @@ namespace TimeZoneApp
                     {
                         TimeZoneInfo timeZoneInfo = TZConvert.GetTimeZoneInfo(timezoneId);
                         currentTime = TimeZoneInfo.ConvertTimeFromUtc(currentTime, timeZoneInfo);
+                        timeLabel.Text = $"{countryInput} Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
                     }
                     else
                     {
@@ -75,13 +77,16 @@ namespace TimeZoneApp
                 }
                 catch (Exception ex)
                 {
-                    // Handle any unexpected error here
+                    // 예상하지 못한 오류 처리
                     timeLabel.Text = "Error: " + ex.Message;
                     return;
                 }
             }
-        
-            timeLabel.Text = $"{countryInput} Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
+            else
+            {
+                // 국가 이름이 입력되지 않았을 때 UTC 시간을 표시
+                timeLabel.Text = $"UTC Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
+            }
         }
     }
 
