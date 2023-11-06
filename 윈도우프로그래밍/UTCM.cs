@@ -12,7 +12,6 @@ namespace TimeZoneApp
 
         public MainForm()
         {
-            InitializeComponent();
 
             timeLabel = new Label() { Location = new System.Drawing.Point(10, 10), Width = 300 };
             countryTextBox = new TextBox() { Location = new System.Drawing.Point(10, 40), Width = 200 };
@@ -65,4 +64,19 @@ namespace TimeZoneApp
             timeLabel.Text = $"{country} Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
         }
     }
+
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+        }
+    }
 }
+
