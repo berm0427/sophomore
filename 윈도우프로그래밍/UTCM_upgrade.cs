@@ -18,7 +18,6 @@ namespace TimeZoneApp
         public MainForm()
         {
             countryToTimezoneMap = new Dictionary<string, string>();
-            InitializeComponent();
 
             timeLabel = new Label() { Location = new System.Drawing.Point(10, 10), Size = new System.Drawing.Size(300, 20) };
             countryTextBox = new TextBox() { Location = new System.Drawing.Point(10, 40), Width = 200 };
