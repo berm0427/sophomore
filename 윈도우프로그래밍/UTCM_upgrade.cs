@@ -9,66 +9,36 @@ namespace TimeZoneApp
     {
         private Label timeLabel;
         private TextBox countryTextBox;
-        private TextBox timezoneTextBox;
-        private Button addButton;
-        private ListBox mappingListBox;
+        private TextBox timeZoneTextBox; // Added TextBox for custom time zone input
         private Timer timer;
         private Dictionary<string, string> countryToTimezoneMap;
 
         public MainForm()
         {
-            countryToTimezoneMap = new Dictionary<string, string>();
+            countryToTimezoneMap = new Dictionary<string, string>
+            {
+                { "Korea", "Asia/Seoul" },
+                { "USA", "America/New_York" },
+                { "Japan", "Asia/Tokyo" },
+                // You can add more country-time zone mappings here
+            };
 
-            timeLabel = new Label() { Location = new System.Drawing.Point(10, 10), Size = new System.Drawing.Size(300, 20) };
+            timeLabel = new Label() { Location = new System.Drawing.Point(10, 10), Size = new System.Drawing.Size(400, 20) };
             countryTextBox = new TextBox() { Location = new System.Drawing.Point(10, 40), Width = 200 };
-            timezoneTextBox = new TextBox() { Location = new System.Drawing.Point(220, 40), Width = 200 };
-            addButton = new Button() { Location = new System.Drawing.Point(430, 40), Text = "Add", Width = 100 };
-            mappingListBox = new ListBox() { Location = new System.Drawing.Point(10, 70), Size = new System.Drawing.Size(520, 100) };
+            timeZoneTextBox = new TextBox() { Location = new System.Drawing.Point(220, 40), Width = 200 }; // Added TextBox for custom time zone
             timer = new Timer() { Interval = 1000 };
 
             this.Controls.Add(timeLabel);
             this.Controls.Add(countryTextBox);
-            this.Controls.Add(timezoneTextBox);
-            this.Controls.Add(addButton);
-            this.Controls.Add(mappingListBox);
+            this.Controls.Add(timeZoneTextBox); // Added TextBox for custom time zone
+            this.Controls.Add(new Label() { Location = new System.Drawing.Point(10, 70), Size = new System.Drawing.Size(400, 20), Text = "Enter a country name or custom time zone and press Enter" });
 
             countryTextBox.KeyDown += CountryTextBox_KeyDown;
-            timezoneTextBox.KeyDown += TimezoneTextBox_KeyDown;
-            addButton.Click += AddButton_Click;
+            timeZoneTextBox.KeyDown += CountryTextBox_KeyDown; // Handle Enter key press for custom time zone
             timer.Tick += Timer_Tick;
 
             timer.Start();
             UpdateTime();
-        }
-
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            string country = countryTextBox.Text.Trim();
-            string timezone = timezoneTextBox.Text.Trim();
-
-            if (!string.IsNullOrWhiteSpace(country) && !string.IsNullOrWhiteSpace(timezone))
-            {
-                if (TZConvert.KnownIanaTimeZoneNames.Contains(timezone))
-                {
-                    countryToTimezoneMap[country] = timezone;
-                    UpdateMappingListBox();
-                    countryTextBox.Clear();
-                    timezoneTextBox.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("Invalid timezone identifier.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void UpdateMappingListBox()
-        {
-            mappingListBox.Items.Clear();
-            foreach (var mapping in countryToTimezoneMap)
-            {
-                mappingListBox.Items.Add($"{mapping.Key} - {mapping.Value}");
-            }
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -80,37 +50,49 @@ namespace TimeZoneApp
         {
             if (e.KeyCode == Keys.Enter)
             {
-                timezoneTextBox.Focus();
-                e.SuppressKeyPress = true; // To prevent ding sound on pressing Enter
-            }
-        }
-
-        private void TimezoneTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                AddButton_Click(this, EventArgs.Empty);
-                e.SuppressKeyPress = true;
+                UpdateTime();
+                e.SuppressKeyPress = true; // Prevent Enter key sound
             }
         }
 
         private void UpdateTime()
         {
-            string countryInput = countryTextBox.Text.Trim();
+            string input = countryTextBox.Text.Trim();
             DateTime currentTime = DateTime.UtcNow;
 
-            if (!string.IsNullOrWhiteSpace(countryInput) && countryToTimezoneMap.TryGetValue(countryInput, out var timezoneId))
+            if (!string.IsNullOrWhiteSpace(input))
             {
                 try
                 {
-                    TimeZoneInfo timeZoneInfo = TZConvert.GetTimeZoneInfo(timezoneId);
-                    currentTime = TimeZoneInfo.ConvertTimeFromUtc(currentTime, timeZoneInfo);
-                    timeLabel.Text = $"{countryInput} Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
+                    if (countryToTimezoneMap.TryGetValue(input, out var countryTimeZone))
+                    {
+                        TimeZoneInfo timeZoneInfo = TZConvert.GetTimeZoneInfo(countryTimeZone);
+                        currentTime = TimeZoneInfo.ConvertTimeFromUtc(currentTime, timeZoneInfo);
+                        timeLabel.Text = $"{input} Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
+                    }
+                    else
+                    {
+                        // If the input is not found in the predefined mappings, try it as a custom time zone
+                        if (!string.IsNullOrWhiteSpace(timeZoneTextBox.Text))
+                        {
+                            TimeZoneInfo timeZoneInfo = TZConvert.GetTimeZoneInfo(timeZoneTextBox.Text);
+                            currentTime = TimeZoneInfo.ConvertTimeFromUtc(currentTime, timeZoneInfo);
+                            timeLabel.Text = $"Custom Time Zone: {currentTime:yyyy-MM-dd HH:mm:ss}";
+                        }
+                        else
+                        {
+                            timeLabel.Text = "Invalid country name or time zone not found";
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
                     timeLabel.Text = "Error: " + ex.Message;
                 }
+            }
+            else
+            {
+                timeLabel.Text = $"UTC Time: {currentTime:yyyy-MM-dd HH:mm:ss}";
             }
         }
     }
