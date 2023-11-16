@@ -19,7 +19,7 @@ public class ContentPaneEx extends JFrame
 		contentpane.add(new JButton("Ignore")); // Ignore버튼 달기
 		
 		setSize(300, 150); // 프레임 사이즈 설정
-		setVisible(true); // 
+		setVisible(true); // 화면에 프레임 출력
 	}
 	
 	public static void main(String[] args)
