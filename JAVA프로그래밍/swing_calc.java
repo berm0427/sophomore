@@ -51,7 +51,7 @@ public class swing_calc extends JFrame {
         c.add(inputField, BorderLayout.NORTH); // 맨 위에 입력 필드 놓기
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4, 4, 5, 5));
+        buttonPanel.setLayout(new GridLayout(4, 4, 5, 5)); // 4 x 3 배치, 수직 간격 5픽셀, 수평 간격 5픽셀 배치
 
         ActionListener insert = new InsertAction();
         ActionListener command = new CommandAction();
