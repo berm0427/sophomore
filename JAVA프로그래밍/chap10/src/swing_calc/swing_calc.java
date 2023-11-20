@@ -5,13 +5,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class swing_calc extends JFrame {
+public class swing_calc extends JFrame 
+{
     private JTextField inputField;
     private double result;
     private String operator;
     private boolean startOfNumber;
 
-    public swing_calc() {
+    public swing_calc() 
+    {
         setTitle("계산기");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container c = getContentPane();
@@ -57,16 +59,20 @@ public class swing_calc extends JFrame {
         setVisible(true);
     }
 
-    private void addButton(Container c, String text, ActionListener listener) {
+    private void addButton(Container c, String text, ActionListener listener) 
+    {
         JButton button = new JButton(text);
         c.add(button);
         button.addActionListener(listener);
     }
 
-    private class InsertAction implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
+    private class InsertAction implements ActionListener 
+    {
+        public void actionPerformed(ActionEvent event) 
+        {
             String input = event.getActionCommand();
-            if (startOfNumber) {
+            if (startOfNumber) 
+            {
                 inputField.setText("");
                 startOfNumber = false;
             }
@@ -74,26 +80,33 @@ public class swing_calc extends JFrame {
         }
     }
 
-    private class CommandAction implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
+    private class CommandAction implements ActionListener 
+    {
+        public void actionPerformed(ActionEvent event) 
+        {
             String command = event.getActionCommand();
 
-            if (startOfNumber) {
-                if (command.equals("-")) {
+            if (startOfNumber) 
+            {
+                if (command.equals("-")) 
+                {
                     inputField.setText(command);
                     startOfNumber = false;
-                } else {
+                } else 
+                  {
                     operator = command;
-                }
-            } else {
+                  }
+            } else 
+              {
                 calculate(Double.parseDouble(inputField.getText()));
                 operator = command;
                 startOfNumber = true;
-            }
+              }
         }
     }
 
-    public void calculate(double x) {
+    public void calculate(double x) 
+    {
         switch (operator) {
             case "+": result += x; break;
             case "-": result -= x; break;
@@ -104,7 +117,8 @@ public class swing_calc extends JFrame {
         inputField.setText("" + result);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         new swing_calc();
     }
 }
