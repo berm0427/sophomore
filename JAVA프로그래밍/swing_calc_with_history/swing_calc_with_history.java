@@ -1,4 +1,4 @@
-package swing_calc;
+package swing_calc_with_history;
 
 import javax.swing.*;
 import java.awt.*;
