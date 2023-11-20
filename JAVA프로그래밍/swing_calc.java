@@ -1,32 +1,3 @@
-/* package swing;
-import javax.swing.*;
-import java.awt.*;
-
-public class swing_calc extends JFrame
-{
-	public swing_calc()
-	{
-		setTitle("계산기");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container c = getContentPane();
-		
-		c.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 40));
-		c.add(new JButton("add"));
-		c.add(new JButton("sub"));
-		c.add(new JButton("mul"));
-		c.add(new JButton("div"));
-		c.add(new JButton("Calculate"));
-		
-		setSize(350, 200);
-		setVisible(true);
-	}
-	
-	public static void main(String[] args)
-	{
-		new swing_calc();
-	}
-}
-*/
 package swing;
 
 import javax.swing.*;
