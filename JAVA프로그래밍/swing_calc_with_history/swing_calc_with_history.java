@@ -106,6 +106,7 @@ public class swing_calc_with_history extends JFrame
 
             if (startOfNumber) 
             {
+            	// 음수 시작 설정
                 if (command.equals("-")) 
                 {
                     inputField.setText(command);
@@ -119,6 +120,7 @@ public class swing_calc_with_history extends JFrame
               {
                 double x = Double.parseDouble(inputField.getText());
                 calculate(x);
+                // = 눌렀을 때 history에 기록 저장
                 if (command.equals("=")) 
                 {
                     history.add(currentCalculation + " = " + result);
@@ -153,9 +155,11 @@ public class swing_calc_with_history extends JFrame
         StringBuilder sb = new StringBuilder();
         for (String record : history) 
         {
-            sb.append(record).append("\n");
+            sb.append(record).append("\n"); // 한 줄씩 기록에 추가
         }
-        historyArea.setText(sb.toString());
+        historyArea.setText(sb.toString()); // sb에 저장된 history를 tostring으로 문자열로 변환 후 
+        									// 이를 historyArea (텍스트 영역)의 텍스트로 설정함 
+        									// 이렇게 하면 historyArea에 모든 계산 기록이 표시됨.
     }
 
     public static void main(String[] args) 
