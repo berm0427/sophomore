@@ -107,7 +107,8 @@ public class swing_calc extends JFrame
 
     public void calculate(double x) 
     {
-        switch (operator) {
+        switch (operator) 
+        {
             case "+": result += x; break;
             case "-": result -= x; break;
             case "*": result *= x; break;
