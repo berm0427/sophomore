@@ -1,4 +1,4 @@
-package swing_calc_with_history;
+package swing_calc;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class swing_calc_with_history extends JFrame {
+public class swing_calc_with_history extends JFrame 
+{
     private JTextField inputField;
     private JTextArea historyArea;
     private ArrayList<String> history;
@@ -15,7 +16,8 @@ public class swing_calc_with_history extends JFrame {
     private boolean startOfNumber;
     private String currentCalculation;
 
-    public swing_calc_with_history() {
+    public swing_calc_with_history() 
+    {
         setTitle("계산기");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container c = getContentPane();
@@ -68,50 +70,64 @@ public class swing_calc_with_history extends JFrame {
         setVisible(true);
     }
 
-    private void addButton(Container c, String text, ActionListener listener) {
+    private void addButton(Container c, String text, ActionListener listener) 
+    {
         JButton button = new JButton(text);
         c.add(button);
         button.addActionListener(listener);
     }
 
-    private class InsertAction implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
+    private class InsertAction implements ActionListener 
+    {
+        public void actionPerformed(ActionEvent event) 
+        {
             String input = event.getActionCommand();
-            if (startOfNumber) {
+            if (startOfNumber) 
+            {
                 inputField.setText("");
                 startOfNumber = false;
             }
             inputField.setText(inputField.getText() + input);
-            if (currentCalculation.isEmpty() || operator.equals("=")) {
+            if (currentCalculation.isEmpty() || operator.equals("=")) 
+            {
                 currentCalculation = inputField.getText();
-            } else {
+            } else 
+            {
                 currentCalculation += input;
             }
         }
     }
 
-    private class CommandAction implements ActionListener {
-        public void actionPerformed(ActionEvent event) {
+    private class CommandAction implements ActionListener 
+    {
+        public void actionPerformed(ActionEvent event) 
+        {
             String command = event.getActionCommand();
 
-            if (startOfNumber) {
-                if (command.equals("-")) {
+            if (startOfNumber) 
+            {
+                if (command.equals("-")) 
+                {
                     inputField.setText(command);
                     startOfNumber = false;
                     currentCalculation = command;
-                } else {
+                } else 
+                {
                     operator = command;
                 }
-            } else {
+            } else 
+              {
                 double x = Double.parseDouble(inputField.getText());
                 calculate(x);
-                if (command.equals("=")) {
+                if (command.equals("=")) 
+                {
                     history.add(currentCalculation + " = " + result);
                     updateHistory();
                     currentCalculation = "";
-                } else {
+                } else 
+                  {
                     currentCalculation += " " + command + " ";
-                }
+                  }
                 inputField.setText("");
                 operator = command;
                 startOfNumber = true;
@@ -119,8 +135,10 @@ public class swing_calc_with_history extends JFrame {
         }
     }
 
-    public void calculate(double x) {
-        switch (operator) {
+    public void calculate(double x) 
+    {
+        switch (operator) 
+        {
             case "+": result += x; break;
             case "-": result -= x; break;
             case "*": result *= x; break;
@@ -130,15 +148,18 @@ public class swing_calc_with_history extends JFrame {
         inputField.setText("" + result);
     }
 
-    private void updateHistory() {
+    private void updateHistory() 
+    {
         StringBuilder sb = new StringBuilder();
-        for (String record : history) {
+        for (String record : history) 
+        {
             sb.append(record).append("\n");
         }
         historyArea.setText(sb.toString());
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         new swing_calc_with_history();
     }
 }
